@@ -58,7 +58,6 @@ public class ARTrackedObject : MonoBehaviour
 	[SerializeField]
 	private string _markerTag = "";					// Unique tag for the marker to get tracking from
 	
-	
 	public string MarkerTag
 	{
 		get
