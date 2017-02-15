@@ -7,9 +7,7 @@ public class TagDistanceChecker : MonoBehaviour {
     private Animator AnimatorCtrl;
 
     void Start () {
-        AnimatorCtrl = GetComponent<Animator>();
-
-     
+        AnimatorCtrl = GetComponent<Animator>();     
     }
 	
 	// Update is called once per frame

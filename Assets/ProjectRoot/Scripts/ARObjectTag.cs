@@ -3,7 +3,8 @@
 public class ARObjectTag : MonoBehaviour
 {
     public Camera m_Camera;
-   
+
+
     void Update()
     {
         // behaving as a billboard to main camera.
@@ -11,7 +12,5 @@ public class ARObjectTag : MonoBehaviour
             m_Camera.transform.rotation * Vector3.up);
 
     }
-
- 
 
 }

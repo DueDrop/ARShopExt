@@ -2,7 +2,11 @@
 using System.Collections;
 
 public class InputProcessor : MonoBehaviour {
-	
+
+    InfoServerConnectionManager connectionManager;
+    void Start (){
+        connectionManager = GetComponent<InfoServerConnectionManager>();
+    }
 	// Update is called once per frame
 	void Update () {
         ProcessInput();
@@ -14,7 +18,7 @@ public class InputProcessor : MonoBehaviour {
         {
             if (Input.touchCount > 0)
             {
-                if (Input.GetTouch(0).phase == TouchPhase.Began)
+                if (Input.GetTouch(0).phase == TouchPhase.Ended)
                 {
                     checkTouch(Input.GetTouch(0).position);
                 }
@@ -22,7 +26,7 @@ public class InputProcessor : MonoBehaviour {
         }
         else if (Application.platform == RuntimePlatform.WindowsEditor)
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 checkTouch(Input.mousePosition);
             }
@@ -34,9 +38,16 @@ public class InputProcessor : MonoBehaviour {
         float rayMaxDistance = 100.0f;
         Ray ray = Camera.main.ScreenPointToRay(pos);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, rayMaxDistance))
+        if (Physics.Raycast(ray, out hit, rayMaxDistance, ~LayerMask.GetMask("ARBackground2")))
         {
-            Debug.Log("Touch/Clicked: " + hit.collider.gameObject.name);
+
+            TagInfoProcessor trackedTag = hit.transform.gameObject.GetComponent<TagInfoProcessor>();
+            if (trackedTag != null)
+            {
+                trackedTag.ProcessTagPress();
+            }
+            
         }
     }
+
 }

@@ -22,7 +22,7 @@ public class InfoServerConnectionManager : MonoBehaviour
     public void OnDestroy()
     {
         PlayerPrefs.Save();
-        httpClient.Abort();
+        if (httpClient != null) httpClient.Abort();
         httpClient = null;
     }
 
