@@ -18,7 +18,7 @@ public class TagInfoProcessor : MonoBehaviour {
         if (connectionManager == null) connectionManager = managerRoot.GetComponent<InfoServerConnectionManager>();
         if (infoPanel == null) infoPanel = managerRoot.GetComponent<InfoPanelManager>();
 
-        trackedObject = GetComponent<ARTrackedObject>();
+        trackedObject = GetComponentInParent<ARTrackedObject>();
         tagCollider = GetComponent<Collider>();
 
     }
@@ -28,6 +28,7 @@ public class TagInfoProcessor : MonoBehaviour {
 
         tagCollider.enabled = false;
         connectionManager.GetMarkerInfo(trackedObject.GetMarker().BarcodeID, GetMarkerInfoHandler);
+        Debug.Log("Sending marker request");
 
     }
 
@@ -35,6 +36,7 @@ public class TagInfoProcessor : MonoBehaviour {
     {
         infoPanel.ShowPanel(info);
         tagCollider.enabled = true;
+        Debug.Log("Got marker request response");
     }
 
 }
