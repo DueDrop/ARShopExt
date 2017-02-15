@@ -15,7 +15,9 @@ public class InfoServerConnectionManager : MonoBehaviour
 
         InfoServerConnectionSettings.LoadPlayerSettings();
         interfaceManager = GetComponent<InfoServerIntefaceManager>();
-        gotInterface = interfaceManager != null; 
+        gotInterface = interfaceManager != null;
+
+        if (httpClient == null) httpClient = new HttpClient();
 
     }
 
@@ -71,7 +73,7 @@ public class InfoServerConnectionManager : MonoBehaviour
 
         string actionString = @"http://{0}/{1}/hs/v1/getMarkerData/{2}";
 
-        System.Uri ActionURI = new System.Uri(string.Format(actionString, InfoServerConnectionSettings.Adress, InfoServerConnectionSettings.Publication, id));
+        Uri ActionURI = new System.Uri(string.Format(actionString, InfoServerConnectionSettings.Adress, InfoServerConnectionSettings.Publication, id));
         httpClient.GetString(ActionURI, (r) => {
             Action(r.Data);
         });
@@ -96,7 +98,7 @@ public class InfoServerConnectionManager : MonoBehaviour
         }
 
         string actionString = @"http://{0}/{1}/hs/v1/check";
-        System.Uri ActionURI = new System.Uri(string.Format(actionString, InfoServerConnectionSettings.Adress, InfoServerConnectionSettings.Publication));
+        Uri ActionURI = new System.Uri(string.Format(actionString, InfoServerConnectionSettings.Adress, InfoServerConnectionSettings.Publication));
         httpClient.GetString(ActionURI, callback);
 
     }
