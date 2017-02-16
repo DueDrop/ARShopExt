@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using InfoServerObjectModel;
 using System.Collections;
 
 public class TagInfoProcessor : MonoBehaviour {
@@ -27,16 +28,17 @@ public class TagInfoProcessor : MonoBehaviour {
     {
 
         tagCollider.enabled = false;
-        connectionManager.GetMarkerInfo(trackedObject.GetMarker().BarcodeID, GetMarkerInfoHandler);
-        Debug.Log("Sending marker request");
+        connectionManager.GetMarkerInfoByID(trackedObject.GetMarker().BarcodeID, GetMarkerInfoHandler);     
 
     }
 
-    private void GetMarkerInfoHandler(string info)
+    private void GetMarkerInfoHandler(InfoServerResponse<InfoServerMarkerResponse> response)
     {
-        infoPanel.ShowPanel(info);
+        if (response.code != 0) return;
+
+        infoPanel.ShowPanel(response.data.description);
         tagCollider.enabled = true;
-        Debug.Log("Got marker request response");
+
     }
 
 }

@@ -1,16 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using CI.HttpClient;
+using InfoServerObjectModel;
 using System;
 
+[RequireComponent(typeof(InfoServerConnectionManager))]
 public class InfoServerIntefaceManager : MonoBehaviour {
 
     public Text DebugConsole;
     public InputField AdressText, PublicationText, UsernameText, PasswordText;
     public Button RunAppButton;
 
-    // Use this for initialization
+    private InfoServerConnectionManager connectionManager;
+
+    #region MonoBehaviour
     void Start () {
+
+        connectionManager = GetComponent<InfoServerConnectionManager>();
 
         InfoServerConnectionSettings.LoadPlayerSettings();
 
@@ -21,15 +27,22 @@ public class InfoServerIntefaceManager : MonoBehaviour {
 
     }
 
+    #endregion
+
+    #region Logging
     // Логирование
-    public void Log(HttpResponseMessage<string> s)
+    public void Log(InfoServerResponse r,  bool drawSeparator = false)
     {
         if (DebugConsole != null)
         {
 
-            string msg = @"[{0:H:mm:ss}]: Статус: {1}  Тело: {2}";
+            string msg = @"[{0:H:mm:ss}]: HTTP: {1} Код: {2} Описание: {3}";
 
-            DebugConsole.text = string.Format(msg, DateTime.Now, s.StatusCode, s.Data) + Environment.NewLine + DebugConsole.text;
+            {
+                msg = msg + Environment.NewLine + "-------------------------------------";
+            }
+
+            DebugConsole.text = string.Format(msg, DateTime.Now, r.httpCode, r.code, r.result) + Environment.NewLine + DebugConsole.text;
         }
     }
 
@@ -48,17 +61,16 @@ public class InfoServerIntefaceManager : MonoBehaviour {
         }
     }
 
+    #endregion
+
+    #region PublicInterface
+
     public void LockInterface() {
-
         RunAppButton.interactable = false;
-
     }
 
-    public void UnockInterface()
-    {
-
+    public void UnockInterface(){
         RunAppButton.interactable = true;
-
     }
 
     public void SetSettingsFromInput()
@@ -73,4 +85,20 @@ public class InfoServerIntefaceManager : MonoBehaviour {
         PlayerPrefs.SetString("conn_UserName", InfoServerConnectionSettings.Username);
         PlayerPrefs.SetString("conn_UserPassword", InfoServerConnectionSettings.Password);
     }
+
+    public void CheckConnection(){
+
+        SetSettingsFromInput();
+        Log(string.Format(@"Соединение с {0} ...", InfoServerConnectionSettings.Adress), true);
+        connectionManager.ConnectionTest(ConnectionTestResponseHandler);
+    }
+    #endregion
+
+    #region InfoServerManager_Callbacks
+
+    private void ConnectionTestResponseHandler(InfoServerResponse response){
+        Log(response);
+    }
+
+    #endregion
 }

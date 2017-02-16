@@ -2,21 +2,20 @@
 using CI.HttpClient;
 using System;
 using System.Net;
+using InfoServerObjectModel;
 
 public class InfoServerConnectionManager : MonoBehaviour
 {
-
-    private InfoServerIntefaceManager interfaceManager;
-    private bool gotInterface;
+    #region fields
     private static HttpClient httpClient = new HttpClient();
+    #endregion
+
+    #region MonoBehaviour
 
     public void Start()
     {
 
         InfoServerConnectionSettings.LoadPlayerSettings();
-        interfaceManager = GetComponent<InfoServerIntefaceManager>();
-        gotInterface = interfaceManager != null;
-
         if (httpClient == null) httpClient = new HttpClient();
 
     }
@@ -28,80 +27,96 @@ public class InfoServerConnectionManager : MonoBehaviour
         httpClient = null;
     }
 
-    private void SetSettings()
-    {
+    #endregion
 
-        if (gotInterface) interfaceManager.SetSettingsFromInput();
+    #region CommonInternal
+    private static bool ConnectionSettingsIncorrect()
+    {
+        return string.IsNullOrEmpty(InfoServerConnectionSettings.Adress)
+               || string.IsNullOrEmpty(InfoServerConnectionSettings.Publication);
 
     }
 
-
-    // Тест подключения
-    public void ConnectionTest()
-    {
-        SetSettings();
-
-        if (gotInterface) interfaceManager.Log(string.Format("Попытка соединения с {0}", InfoServerConnectionSettings.Adress), true);
-
-        ConnectionTest(ConnectionResponseHandler);
-
-    }
-
-    private void ConnectionResponseHandler(HttpResponseMessage<string> obj)
-    {
-
-        if (gotInterface) interfaceManager.Log(obj);
-    }
-
-
-    // Получение ресурса по метке
-    public void GetMarkerInfo(int id, System.Action<string> Action)
-    {
-
-        GetMarkerInfoByID(id, Action);
-
-    }
-
-    private static void GetMarkerInfoByID(int id, System.Action<string> Action)
-    {
-
-        if (string.IsNullOrEmpty(InfoServerConnectionSettings.Adress)
-           || string.IsNullOrEmpty(InfoServerConnectionSettings.Publication))
-        {
-            return;
-        }
-
-        string actionString = @"http://{0}/{1}/hs/v1/getMarkerData/{2}";
-
-        Uri ActionURI = new System.Uri(string.Format(actionString, InfoServerConnectionSettings.Adress, InfoServerConnectionSettings.Publication, id));
-        httpClient.GetString(ActionURI, (r) => {
-            Action(r.Data);
-        });
-    }
-
-    private static void ConnectionTest(System.Action<HttpResponseMessage<string>> callback)
-    {
-
-        if (string.IsNullOrEmpty(InfoServerConnectionSettings.Adress)
-                || string.IsNullOrEmpty(InfoServerConnectionSettings.Publication))
-        {
-            return;
-        }
+    private static void SetCredentials() {
 
         if (!string.IsNullOrEmpty(InfoServerConnectionSettings.Username))
         {
-            httpClient.Credentials = new NetworkCredential(InfoServerConnectionSettings.Username, InfoServerConnectionSettings.Password);
+            if (httpClient.Credentials == null) httpClient.Credentials = new NetworkCredential(InfoServerConnectionSettings.Username, InfoServerConnectionSettings.Password);
         }
         else
         {
             httpClient.Credentials = null;
         }
 
+    }
+    #endregion
+
+    #region Connection
+  
+    public void ConnectionTest(Action<InfoServerResponse> Action)
+    {
+
+        if (ConnectionSettingsIncorrect()) return;
+
+        SetCredentials();
+
         string actionString = @"http://{0}/{1}/hs/v1/check";
-        Uri ActionURI = new System.Uri(string.Format(actionString, InfoServerConnectionSettings.Adress, InfoServerConnectionSettings.Publication));
-        httpClient.GetString(ActionURI, callback);
+        Uri ActionURI = new Uri(string.Format(actionString, InfoServerConnectionSettings.Adress, InfoServerConnectionSettings.Publication));
+        httpClient.GetString(ActionURI, (r) => {
+
+            InfoServerResponse response = JsonUtility.FromJson<InfoServerResponse>(r.Data);
+            response.httpCode = r.StatusCode;
+
+            Action(response);
+
+        });
 
     }
 
+    #endregion
+
+    #region Markers
+
+    public void GetMarkerInfoByID(int id, Action<InfoServerResponse<InfoServerMarkerResponse>> Action)
+    {
+
+        if (ConnectionSettingsIncorrect()) return;
+
+        SetCredentials();
+
+        string actionString = @"http://{0}/{1}/hs/v1/markerinfo/{2}";
+
+        Uri ActionURI = new Uri(string.Format(actionString, InfoServerConnectionSettings.Adress, InfoServerConnectionSettings.Publication, id));
+        httpClient.GetString(ActionURI, (r) => {
+             
+            InfoServerResponse<InfoServerMarkerResponse> response = JsonUtility.FromJson<InfoServerResponse<InfoServerMarkerResponse>>(r.Data);
+            response.httpCode = r.StatusCode;
+
+            Action(response);
+
+        });
+    }
+
+    public void GetMarkerPool(Action<InfoServerResponse<InfoServerMarkerPoolResponse>> Action)
+    {
+
+        if (ConnectionSettingsIncorrect()) return;
+
+        SetCredentials();
+
+        string actionString = @"http://{0}/{1}/hs/v1/getpool";
+
+        Uri ActionURI = new Uri(string.Format(actionString, InfoServerConnectionSettings.Adress, InfoServerConnectionSettings.Publication));
+        httpClient.GetString(ActionURI, (r) => {
+
+            InfoServerResponse<InfoServerMarkerPoolResponse> response = JsonUtility.FromJson<InfoServerResponse<InfoServerMarkerPoolResponse>>(r.Data);
+
+            response.httpCode = r.StatusCode;
+            Action(response);
+
+        });
+    }
+
+    #endregion
 
 }
