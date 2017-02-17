@@ -83,6 +83,10 @@ namespace CI.HttpClient
 
         private static IDispatcher _dispatcher;
 
+        #region InfoServerDebug
+
+        #endregion
+
         /// <summary>
         /// Provides a class for sending HTTP requests and receiving HTTP responses from a resource identified by a URI
         /// </summary>
@@ -176,7 +180,7 @@ namespace CI.HttpClient
                     RemoveRequest(request);
                 }
                 catch (Exception e)
-                {
+                {                  
                     RaiseErrorResponse(responseCallback, e);
                 }
             });

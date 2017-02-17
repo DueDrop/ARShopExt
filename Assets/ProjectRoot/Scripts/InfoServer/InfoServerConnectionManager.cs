@@ -17,6 +17,7 @@ public class InfoServerConnectionManager : MonoBehaviour
 
         InfoServerConnectionSettings.LoadPlayerSettings();
         if (httpClient == null) httpClient = new HttpClient();
+        httpClient.Timeout = 60000;        
 
     }
 
@@ -30,6 +31,7 @@ public class InfoServerConnectionManager : MonoBehaviour
     #endregion
 
     #region CommonInternal
+
     private static bool ConnectionSettingsIncorrect()
     {
         return string.IsNullOrEmpty(InfoServerConnectionSettings.Adress)
@@ -49,10 +51,74 @@ public class InfoServerConnectionManager : MonoBehaviour
         }
 
     }
+
+    private InfoServerResponse GetResponse(HttpResponseMessage<string> r)
+    {
+
+        InfoServerResponse response = null;
+
+        if (r.IsSuccessStatusCode)
+        {
+            response = JsonUtility.FromJson<InfoServerResponse>(r.Data);
+        }
+
+        if (response == null)
+        {
+            response = new InfoServerResponse();
+            response.httpCode = r.StatusCode;
+            response.code = -1;
+            response.result = r.ReasonPhrase;
+        }
+                
+        return response;
+    }
+
+    private InfoServerResponse<InfoServerMarkerResponse> GetMarkerInfoResponse(HttpResponseMessage<string> r)
+    {
+
+        InfoServerResponse<InfoServerMarkerResponse> response = null;
+
+        if (r.IsSuccessStatusCode)
+        {
+            response = JsonUtility.FromJson<InfoServerResponse<InfoServerMarkerResponse>>(r.Data);
+        }
+
+        if (response == null)
+        {
+            response = new InfoServerResponse<InfoServerMarkerResponse>();
+            response.httpCode = r.StatusCode;
+            response.code = -1;
+            response.result = r.ReasonPhrase;
+        }
+
+        return response;
+    }
+
+    private InfoServerResponse<InfoServerMarkerPoolResponse> GetMarkerPoolResponse(HttpResponseMessage<string> r)
+    {
+
+        InfoServerResponse<InfoServerMarkerPoolResponse> response = null;
+
+        if (r.IsSuccessStatusCode)
+        {
+            response = JsonUtility.FromJson<InfoServerResponse<InfoServerMarkerPoolResponse>>(r.Data);
+        }
+
+        if (response == null)
+        {
+            response = new InfoServerResponse<InfoServerMarkerPoolResponse>();
+            response.httpCode = r.StatusCode;
+            response.code = -1;
+            response.result = r.ReasonPhrase;
+        }
+
+        return response;
+    }
+
     #endregion
 
     #region Connection
-  
+
     public void ConnectionTest(Action<InfoServerResponse> Action)
     {
 
@@ -63,14 +129,11 @@ public class InfoServerConnectionManager : MonoBehaviour
         string actionString = @"http://{0}/{1}/hs/v1/check";
         Uri ActionURI = new Uri(string.Format(actionString, InfoServerConnectionSettings.Adress, InfoServerConnectionSettings.Publication));
         httpClient.GetString(ActionURI, (r) => {
+                     
+            Action(GetResponse(r));
 
-            InfoServerResponse response = JsonUtility.FromJson<InfoServerResponse>(r.Data);
-            response.httpCode = r.StatusCode;
-
-            Action(response);
-
-        });
-
+        });     
+          
     }
 
     #endregion
@@ -88,11 +151,9 @@ public class InfoServerConnectionManager : MonoBehaviour
 
         Uri ActionURI = new Uri(string.Format(actionString, InfoServerConnectionSettings.Adress, InfoServerConnectionSettings.Publication, id));
         httpClient.GetString(ActionURI, (r) => {
-             
-            InfoServerResponse<InfoServerMarkerResponse> response = JsonUtility.FromJson<InfoServerResponse<InfoServerMarkerResponse>>(r.Data);
-            response.httpCode = r.StatusCode;
-
-            Action(response);
+                         
+            
+            Action(GetMarkerInfoResponse(r));
 
         });
     }
@@ -108,11 +169,8 @@ public class InfoServerConnectionManager : MonoBehaviour
 
         Uri ActionURI = new Uri(string.Format(actionString, InfoServerConnectionSettings.Adress, InfoServerConnectionSettings.Publication));
         httpClient.GetString(ActionURI, (r) => {
-
-            InfoServerResponse<InfoServerMarkerPoolResponse> response = JsonUtility.FromJson<InfoServerResponse<InfoServerMarkerPoolResponse>>(r.Data);
-
-            response.httpCode = r.StatusCode;
-            Action(response);
+            
+            Action(GetMarkerPoolResponse(r));
 
         });
     }

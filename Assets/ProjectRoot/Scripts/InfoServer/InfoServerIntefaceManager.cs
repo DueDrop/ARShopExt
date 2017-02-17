@@ -31,18 +31,19 @@ public class InfoServerIntefaceManager : MonoBehaviour {
 
     #region Logging
     // Логирование
-    public void Log(InfoServerResponse r,  bool drawSeparator = false)
+    public void Log(InfoServerResponse r, bool drawSeparator = false)
     {
         if (DebugConsole != null)
         {
 
-            string msg = @"[{0:H:mm:ss}]: HTTP: {1} Код: {2} Описание: {3}";
+            string msg = r.LogMsg();
 
+            if (drawSeparator)
             {
                 msg = msg + Environment.NewLine + "-------------------------------------";
             }
 
-            DebugConsole.text = string.Format(msg, DateTime.Now, r.httpCode, r.code, r.result) + Environment.NewLine + DebugConsole.text;
+            DebugConsole.text = msg + Environment.NewLine + DebugConsole.text;
         }
     }
 
@@ -90,13 +91,22 @@ public class InfoServerIntefaceManager : MonoBehaviour {
 
         SetSettingsFromInput();
         Log(string.Format(@"Соединение с {0} ...", InfoServerConnectionSettings.Adress), true);
-        connectionManager.ConnectionTest(ConnectionTestResponseHandler);
+        connectionManager.ConnectionTest(LogResponseHandler);
     }
+
+    public void GetMarkerPool()
+    {
+        SetSettingsFromInput();
+        Log(string.Format(@"Запрос пула маркеров у {0}...", InfoServerConnectionSettings.Adress), true);
+        connectionManager.GetMarkerPool(LogResponseHandler);
+    }
+
     #endregion
 
     #region InfoServerManager_Callbacks
 
-    private void ConnectionTestResponseHandler(InfoServerResponse response){
+    private void LogResponseHandler(InfoServerResponse response)
+    {
         Log(response);
     }
 

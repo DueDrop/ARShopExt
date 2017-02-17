@@ -19,7 +19,7 @@ namespace CI.HttpClient.Core
                 HandleStringResponseRead(responseCallback);
             }
             catch (Exception e)
-            {
+            {                
                 RaiseErrorResponse(responseCallback, e);
             }
         }

@@ -116,7 +116,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -13.000015, y: 0.000044822693}
+  m_AnchoredPosition: {x: -13.000015, y: -0.0000009536743}
   m_SizeDelta: {x: -26, y: 0.99957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &67872202
@@ -140,10 +140,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 28
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 4
+    m_BestFit: 1
+    m_MinSize: 28
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -766,6 +766,17 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1499525061}
   m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!224 &680420644 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade,
+    type: 2}
+  m_PrefabInternal: {fileID: 797521436}
+--- !u!114 &680420648 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11470458, guid: c30bf848394926f458d1fac63a64fade,
+    type: 2}
+  m_PrefabInternal: {fileID: 797521436}
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &771488126
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,8 +851,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 157469611}
   m_HandleRect: {fileID: 157469610}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99999994
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -881,6 +892,368 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 771488126}
+--- !u!1001 &797521436
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1746060120}
+    m_Modifications:
+    - target: {fileID: 11470458, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveExitScale.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470454, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_Text
+      value: "\u041F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u043C\u0430\u0440\u043A\u0435\u0440\u044B\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470456, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_Color.r
+      value: 0.058823526
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470456, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_Color.g
+      value: 0.61054766
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470456, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470454, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470454, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470454, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 170464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_Name
+      value: GetMarkerPool
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470458, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470454, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_FontData.m_RichText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470454, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_FontData.m_AlignByGeometry
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470454, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470454, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470454, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470454, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470454, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470458, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470458, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470458, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1034851855}
+    - target: {fileID: 11470458, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: GetMarkerPool
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470458, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470454, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.animationDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 680420644}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ExitEvents.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 680420648}
+    - target: {fileID: 11470460, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_ShowMaskGraphic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.data[1].value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveExitScale.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveExitScale.m_Curve.Array.data[0].inSlope
+      value: -0.06976737
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveExitScale.m_Curve.Array.data[0].outSlope
+      value: -0.06976737
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveExitScale.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveExitScale.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveExitScale.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveExitScale.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveExitScale.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveExitScale.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.FadePropetiesAnim.fadeInOutEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.FadePropetiesAnim.startFade
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.FadePropetiesAnim.fadeOverride
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.data[2].time
+      value: 0.9420833
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.data[2].value
+      value: 0.47187495
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.data[2].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.data[2].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveEnterScale.m_Curve.Array.data[2].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.TweenCurveExitScale.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ExitEvents.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.StartScale.x
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.StartScale.y
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470462, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: animationParts.ScalePropetiesAnim.StartScale.z
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470458, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c30bf848394926f458d1fac63a64fade, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &836749929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1885,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 22470464, guid: c30bf848394926f458d1fac63a64fade, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -2975,6 +3348,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1499525062}
+  - {fileID: 680420644}
   - {fileID: 931732924}
   m_Father: {fileID: 1409049480}
   m_RootOrder: 2
