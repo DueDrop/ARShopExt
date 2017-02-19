@@ -107,6 +107,7 @@ public class InfoServerIntefaceManager : MonoBehaviour {
 
     private void LogResponseHandler(InfoServerResponse response)
     {
+        
         Log(response);
     }
 

@@ -151,8 +151,7 @@ public class InfoServerConnectionManager : MonoBehaviour
 
         Uri ActionURI = new Uri(string.Format(actionString, InfoServerConnectionSettings.Adress, InfoServerConnectionSettings.Publication, id));
         httpClient.GetString(ActionURI, (r) => {
-                         
-            
+                                   
             Action(GetMarkerInfoResponse(r));
 
         });
