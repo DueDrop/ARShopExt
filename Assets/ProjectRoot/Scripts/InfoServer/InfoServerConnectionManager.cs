@@ -172,6 +172,7 @@ public class InfoServerConnectionManager : MonoBehaviour
             Action(GetMarkerPoolResponse(r));
 
         });
+
     }
 
     #endregion

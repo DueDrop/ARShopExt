@@ -53,6 +53,7 @@ public class ARTrackedObject : MonoBehaviour
 	private bool visibleOrRemain = false;			// Whether to show the content (based on above variables)
 
 	public GameObject eventReceiver;
+    public string objectName;
 
 	// Private fields with accessors.
 	[SerializeField]

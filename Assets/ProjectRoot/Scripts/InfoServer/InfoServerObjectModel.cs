@@ -35,11 +35,17 @@ namespace InfoServerObjectModel
     [Serializable]
     public class InfoServerMarkerResponse {
 
+        public string name;
+        public float price;
+        public float quantity;
+
         public string description;
+
+        public string image;
 
         public override string ToString()
         {
-            return description;
+            return name + " = " + price.ToString() + " x " + quantity.ToString();
         }
 
     }
@@ -47,7 +53,7 @@ namespace InfoServerObjectModel
     [Serializable]
     public class InfoServerMarkerPoolResponse
     {
-        public int[] markers;
+        public MarkerInfo[] markers;
 
         public override string ToString()
         {
@@ -56,7 +62,7 @@ namespace InfoServerObjectModel
             string result = "[";
 
             bool first = true;
-            foreach (int m in markers)
+            foreach (MarkerInfo m in markers)
             {               
                 result += (first ? "" : ",") + m.ToString();
             }
@@ -64,6 +70,18 @@ namespace InfoServerObjectModel
             result += "]";
 
             return result;
+        }
+    }
+
+    [Serializable]
+    public class MarkerInfo
+    {
+        public int markerID;
+        public string name;
+
+        public override string ToString()
+        {
+            return markerID.ToString();
         }
     }
 

@@ -36,7 +36,7 @@ public class TagInfoProcessor : MonoBehaviour {
     {
         if (response.code != 0) return;
 
-        infoPanel.ShowPanel(response.data.description);
+        infoPanel.ShowPanel(response);
         tagCollider.enabled = true;
 
     }

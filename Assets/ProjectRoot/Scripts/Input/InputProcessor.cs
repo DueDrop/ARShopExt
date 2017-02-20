@@ -2,11 +2,7 @@
 using System.Collections;
 
 public class InputProcessor : MonoBehaviour {
-
-    InfoServerConnectionManager connectionManager;
-    void Start (){
-        connectionManager = GetComponent<InfoServerConnectionManager>();
-    }
+        
 	// Update is called once per frame
 	void Update () {
         ProcessInput();

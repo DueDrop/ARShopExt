@@ -113,7 +113,7 @@ public class AROrigin : MonoBehaviour
 
 	void Start()
 	{
-		FindMarkers();
+		//FindMarkers();
 	}
 
 	// Get the marker, if any, currently acting as the base.
