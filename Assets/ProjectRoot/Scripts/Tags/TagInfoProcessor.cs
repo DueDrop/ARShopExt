@@ -27,8 +27,11 @@ public class TagInfoProcessor : MonoBehaviour {
     public void ProcessTagPress()
     {
 
-        tagCollider.enabled = false;
-        connectionManager.GetMarkerInfoByID(trackedObject.GetMarker().BarcodeID, GetMarkerInfoHandler);     
+        if (trackedObject.markerType == MarkerTypes.Item)
+        {
+            tagCollider.enabled = false;
+            connectionManager.GetMarkerInfoByID(trackedObject.GetMarker().BarcodeID, GetMarkerInfoHandler);
+        }
 
     }
 

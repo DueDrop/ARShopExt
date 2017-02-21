@@ -5,7 +5,8 @@ using InfoServerObjectModel;
 public class InfoServerMarkerPool: MonoBehaviour {
     
     public GameObject MarkerPoolRoot;
-    public GameObject TagPrefab;
+    public GameObject ItemTagPrefab;
+    public GameObject DiscountTagPrefab;
     public GameObject OriginObject;
 
     public bool demoZeroBarcode = false;
@@ -13,7 +14,9 @@ public class InfoServerMarkerPool: MonoBehaviour {
     private InfoServerConnectionManager connectionManager;
     private ARController arController;
     private AROrigin arOrigin;
-	
+
+    #region MonoBehaviour
+
     public void Start(){
 
         connectionManager = GetComponent<InfoServerConnectionManager>();
@@ -33,11 +36,17 @@ public class InfoServerMarkerPool: MonoBehaviour {
 
     }
 
+    void OnDestroy()
+    {
+        arController.StopAR();
+    }
+
+    #endregion
+
     protected void GetMarkerPoolHandler(InfoServerResponse<InfoServerMarkerPoolResponse> r) {
 
         if (r.code != 0) return;
-        init(r.data.markers);
-        arOrigin.FindMarkers();
+        init(r.data.markers);        
     }
 
     public void init(MarkerInfo[] markers){
@@ -57,32 +66,44 @@ public class InfoServerMarkerPool: MonoBehaviour {
             newMarker.Tag = "barcode" + m.ToString();
             newMarker.BarcodeID = m.markerID;
             newMarker.UseContPoseEstimation = true;
-            newMarker.PatternWidth = 0.08f;
+            newMarker.PatternWidth = m.markerSize;
             newMarker.Load();
 
-            GameObject NewTag = Instantiate(TagPrefab);
+            GameObject NewTag;
+
+            switch (m.markerType) {
+                case MarkerTypes.Item:
+                    NewTag = Instantiate(ItemTagPrefab);
+                    break;
+
+                case MarkerTypes.Discount:
+                    NewTag = Instantiate(DiscountTagPrefab);
+                    break;
+
+                default:
+                    continue;                   
+
+            }
 
             ARTrackedObject to = NewTag.GetComponent<ARTrackedObject>();
 
             to.MarkerTag = newMarker.Tag;
             to.objectName = m.name;
+            to.markerType = m.markerType;
             
                                    
-            NewTag.transform.parent = OriginObject.transform;
-            
+            NewTag.transform.parent = OriginObject.transform;            
             NewTag.transform.position = Vector3.zero;
-
             NewTag.GetComponentInChildren<TextMesh>().text = m.name;
 
         }
+
+        arOrigin.FindMarkers();
 
         arController.StartAR();
         
     }
 
-    void OnDestroy()
-    {
-        arController.StopAR();
-    }
+  
 	
 }

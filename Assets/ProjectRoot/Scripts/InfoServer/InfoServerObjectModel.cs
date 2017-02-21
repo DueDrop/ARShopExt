@@ -78,11 +78,18 @@ namespace InfoServerObjectModel
     {
         public int markerID;
         public string name;
+        public MarkerTypes markerType;
+        public float markerSize;
 
         public override string ToString()
         {
             return markerID.ToString();
         }
+    }
+
+    [Serializable]
+    public enum MarkerTypes{
+        Item, Discount
     }
 
 }

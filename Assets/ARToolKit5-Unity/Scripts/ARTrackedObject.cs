@@ -37,6 +37,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using InfoServerObjectModel;
 
 [RequireComponent(typeof(Transform))]
 [ExecuteInEditMode]
@@ -54,6 +55,7 @@ public class ARTrackedObject : MonoBehaviour
 
 	public GameObject eventReceiver;
     public string objectName;
+    public MarkerTypes markerType;
 
 	// Private fields with accessors.
 	[SerializeField]
