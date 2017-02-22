@@ -12,8 +12,10 @@ public class ARObjectTag : MonoBehaviour
     void Update()
     {
         // behaving as a billboard to main camera.
-        transform.LookAt(transform.position + mCamera.transform.rotation * Vector3.forward,
-            mCamera.transform.rotation * Vector3.up);
+        Vector3 target = transform.position + mCamera.transform.rotation * Vector3.forward;
+        Quaternion rotation = Quaternion.LookRotation(target, mCamera.transform.up);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5.0f);        
 
     }
 

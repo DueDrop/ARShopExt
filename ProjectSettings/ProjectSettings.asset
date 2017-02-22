@@ -98,7 +98,7 @@ PlayerSettings:
   virtualRealitySupported: 0
   productGUID: 5d851d0ffb17c4f0485c34eb26a074c0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 16
+  AndroidMinSdkVersion: 17
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   apiCompatibilityLevel: 2
@@ -162,7 +162,7 @@ PlayerSettings:
     app signing/artoolworks-release.keystore
   AndroidKeyaliasName: 
   AndroidTVCompatibility: 0
-  AndroidIsGame: 1
+  AndroidIsGame: 0
   androidEnableBanner: 1
   m_AndroidBanners:
   - width: 320

@@ -86,10 +86,12 @@ namespace InfoServerObjectModel
             return markerID.ToString();
         }
     }
-
+   
+     
     [Serializable]
-    public enum MarkerTypes{
-        Item, Discount
+    public enum MarkerTypes{        
+        Item,        
+        Discount
     }
 
 }
