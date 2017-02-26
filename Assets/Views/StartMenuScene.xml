@@ -1,0 +1,6 @@
+<StartMenuScene xmlns="MarkLight">
+    <UserInterface>
+      <SettingsScreen />
+    </UserInterface>
+    <EventSystem />  
+</StartMenuScene>
