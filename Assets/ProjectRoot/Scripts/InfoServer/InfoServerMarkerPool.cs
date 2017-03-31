@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using InfoServerObjectModel;
+using MarkLight.Views.UI;
 
 [RequireComponent(typeof(InfoServerConnectionManager))]
 public class InfoServerMarkerPool: MonoBehaviour {
     
-    public GameObject MarkerPoolRoot;
-    public GameObject ItemTagPrefab;
-    public GameObject DiscountTagPrefab;
+    public GameObject MarkerPoolRoot;    
     public GameObject OriginObject;
 
     public bool demoZeroBarcode = false;
@@ -15,6 +14,8 @@ public class InfoServerMarkerPool: MonoBehaviour {
     private ARController arController;
     private AROrigin arOrigin;
 
+    private ARMarkerContentView markerTagView;
+
     #region MonoBehaviour
 
     public void Start(){
@@ -22,6 +23,7 @@ public class InfoServerMarkerPool: MonoBehaviour {
         connectionManager = GetComponent<InfoServerConnectionManager>();
         arController = MarkerPoolRoot.GetComponent<ARController>();
         arOrigin = OriginObject.GetComponent<AROrigin>();
+        markerTagView = FindObjectOfType<ARMarkerContentView>();
 
         // Если работаем в деморежиме - используем уже настроенный 0-ШК.
         // Иначе, пытаемся получить массив маркеров с сервера.
@@ -77,23 +79,23 @@ public class InfoServerMarkerPool: MonoBehaviour {
             newMarker.PatternWidth = m.markerSize;
             newMarker.Load();
 
-            GameObject NewTag;
+            GameObject NewTag = new GameObject(newMarker.Tag);        
 
             switch (m.markerType) {
                 case MarkerTypes.Item:
-                    NewTag = Instantiate(ItemTagPrefab);
+                    markerTagView.AddElement(NewTag);
                     break;
 
                 case MarkerTypes.Discount:
-                    NewTag = Instantiate(DiscountTagPrefab);
+                    markerTagView.AddElement(NewTag);
                     break;
 
                 default:
                     continue;                   
 
             }
-
-            ARTrackedObject to = NewTag.GetComponent<ARTrackedObject>();
+           
+            ARTrackedObject to = NewTag.AddComponent<ARTrackedObject>();
 
             to.MarkerTag = newMarker.Tag;
             to.objectName = m.name;
@@ -101,8 +103,7 @@ public class InfoServerMarkerPool: MonoBehaviour {
             to.secondsToRemainVisible = 0.4f;
                                    
             NewTag.transform.parent = OriginObject.transform;            
-            NewTag.transform.position = Vector3.zero;
-            NewTag.GetComponentInChildren<TextMesh>().text = m.name;
+            NewTag.transform.position = Vector3.zero;            
 
             NewTag.SetActive(true);
 

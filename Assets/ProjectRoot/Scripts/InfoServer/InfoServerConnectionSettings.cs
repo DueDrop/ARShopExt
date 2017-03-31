@@ -39,4 +39,12 @@ public static class InfoServerConnectionSettings {
         InfoServerConnectionSettings.Password = PlayerPrefs.GetString("conn_UserPassword");
     }
 
+    public static void SavePlayerSettings()
+    {
+        PlayerPrefs.SetString("conn_Adress", InfoServerConnectionSettings.Adress);
+        PlayerPrefs.SetString("conn_Publication", InfoServerConnectionSettings.Publication);
+        PlayerPrefs.SetString("conn_UserName", InfoServerConnectionSettings.Username);
+        PlayerPrefs.SetString("conn_UserPassword", InfoServerConnectionSettings.Password);
+    }
+
 }

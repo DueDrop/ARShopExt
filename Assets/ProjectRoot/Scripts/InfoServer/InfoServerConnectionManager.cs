@@ -43,7 +43,7 @@ public class InfoServerConnectionManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(InfoServerConnectionSettings.Username))
         {
-            if (httpClient.Credentials == null) httpClient.Credentials = new NetworkCredential(InfoServerConnectionSettings.Username, InfoServerConnectionSettings.Password);
+            httpClient.Credentials = new NetworkCredential(InfoServerConnectionSettings.Username, InfoServerConnectionSettings.Password);
         }
         else
         {
